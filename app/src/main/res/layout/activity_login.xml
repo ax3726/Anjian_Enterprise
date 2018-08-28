@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/lly_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        android:orientation="vertical"
+        android:paddingLeft="25px"
+        android:paddingRight="25px">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="69px"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6px"
+            android:text="欢迎登录安评！"
+            android:textColor="@color/color3e3e3e"
+            android:textSize="34px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="61px"
+
+            android:text="用户名/手机号"
+            android:textColor="@color/color4a4a4a"
+            android:textSize="16px" />
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_border_et"
+            android:gravity="center_vertical"
+            android:hint="手机号码"
+            android:layout_marginTop="14px"
+            android:inputType="text"
+            android:maxLength="11"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textColorHint="@color/colord9d9d9"
+            android:textSize="18px" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34px"
+
+            android:text="密码"
+            android:textColor="@color/color4a4a4a"
+            android:textSize="16px" />
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_border_et"
+            android:gravity="center_vertical"
+            android:hint="输入密码"
+            android:layout_marginTop="14px"
+            android:inputType="textPassword"
+
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textColorHint="@color/colord9d9d9"
+            android:textSize="18px" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="47px"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_forget_pwd"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="忘记密码"
+                android:gravity="center"
+                android:textSize="16px"
+                android:textColor="@color/colorTheme"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="登陆"
+                android:gravity="center"
+                android:textSize="20px"
+                android:background="@drawable/shape_common_blue"
+                android:textColor="@color/colorWhite"
+                android:layout_height="44px" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+</layout>

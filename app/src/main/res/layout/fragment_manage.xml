@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/lly_body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorbackground"
+        android:orientation="vertical">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15px"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_risk"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingTop="25px"
+                android:paddingBottom="20px"
+                android:text="风险管控"
+                android:textSize="12px"
+                android:layout_marginLeft="20px"
+                android:gravity="center_horizontal"
+                android:drawablePadding="8px"
+                android:background="@drawable/shape_common_white"
+                android:drawableTop="@drawable/manage_risk_icon"
+                android:textColor="@color/colord2b2b2b"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:id="@+id/tv_hidden"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingTop="25px"
+                android:paddingBottom="20px"
+                android:text="隐患排查"
+                android:textSize="12px"
+                android:layout_marginLeft="20px"
+                android:gravity="center_horizontal"
+                android:drawablePadding="8px"
+                android:background="@drawable/shape_common_white"
+                android:drawableTop="@drawable/manage_hidden_icon"
+                android:textColor="@color/colord2b2b2b"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_standard"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingTop="25px"
+                android:paddingBottom="20px"
+                android:text="安全标准化"
+                android:textSize="12px"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:gravity="center_horizontal"
+                android:drawablePadding="8px"
+                android:background="@drawable/shape_common_white"
+                android:drawableTop="@drawable/manage_standard_icon"
+                android:textColor="@color/colord2b2b2b"
+                android:layout_height="wrap_content" />
+
+
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15px"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_train"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingTop="25px"
+                android:paddingBottom="20px"
+                android:text="培训考试"
+                android:textSize="12px"
+                android:layout_marginLeft="20px"
+                android:gravity="center_horizontal"
+                android:drawablePadding="8px"
+                android:background="@drawable/shape_common_white"
+                android:drawableTop="@drawable/manage_train_icon"
+                android:textColor="@color/colord2b2b2b"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:id="@+id/tv_message"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingTop="25px"
+                android:paddingBottom="20px"
+                android:text="在线咨询"
+                android:textSize="12px"
+                android:layout_marginLeft="20px"
+                android:gravity="center_horizontal"
+                android:drawablePadding="8px"
+                android:background="@drawable/shape_common_white"
+                android:drawableTop="@drawable/manage_message_icon"
+                android:textColor="@color/colord2b2b2b"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingTop="25px"
+                android:paddingBottom="20px"
+                android:text="安全标准化"
+                android:textSize="12px"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:gravity="center_horizontal"
+                android:visibility="invisible"
+                android:drawablePadding="8px"
+                android:background="@drawable/shape_common_white"
+                android:drawableTop="@drawable/manage_standard_icon"
+                android:textColor="@color/colord2b2b2b"
+                android:layout_height="wrap_content" />
+
+
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+</layout>

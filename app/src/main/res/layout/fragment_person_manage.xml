@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/lly_body"
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="20px"
+            android:background="@color/colorWhite"
+            android:paddingRight="20px"
+            android:paddingTop="10px"
+            android:paddingBottom="10px"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="50px"
+                android:src="@drawable/message_head1_icon"
+                android:layout_height="50px" />
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="0dp"
+                android:layout_marginLeft="9px"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="老李"
+                    android:textColor="@color/colord2b2b2b"
+                    android:textSize="16px"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginTop="4px"
+                    android:layout_width="wrap_content"
+                    android:text="明天早上9点会议室集合开会，请互相转告!"
+                    android:textColor="@color/colorAEAEAE"
+                    android:textSize="14px"
+                    android:layout_height="wrap_content" />
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/colorLine"
+            />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+</layout>
