@@ -26,7 +26,7 @@
             android:name="design_height"
             android:value="667" />
 
-        <activity android:name=".ui.main.MainActivity"></activity>
+        <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.common.FileDisplayActivity" />
         <activity
             android:name=".ui.main.WelcomeActivity"
@@ -39,7 +39,10 @@
         </activity>
         <activity android:name=".ui.main.LoginActivity" />
         <activity android:name=".ui.home.MessageActivity" />
-        <activity android:name=".ui.manage.StandardActivity"></activity>
+        <activity android:name=".ui.manage.StandardActivity" />
+        <activity android:name=".ui.manage.RiskActivity" />
+        <activity android:name=".ui.manage.AddRiskActivity"></activity>
+        <activity android:name=".ui.manage.EditActivity"></activity>
     </application>
 
 </manifest>

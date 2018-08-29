@@ -113,7 +113,6 @@
                 android:background="@color/colorLine" />
 
 
-
             <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -147,6 +146,11 @@
                         android:textSize="14px" />
                 </com.zhy.autolayout.AutoLinearLayout>
 
+                <ImageView
+                    android:layout_width="93px"
+                    android:layout_marginLeft="23px"
+                    android:src="@drawable/home_shi1_icon"
+                    android:layout_height="70px" />
 
 
             </com.zhy.autolayout.AutoLinearLayout>
@@ -189,7 +193,11 @@
                         android:textSize="14px" />
                 </com.zhy.autolayout.AutoLinearLayout>
 
-
+                <ImageView
+                    android:layout_width="93px"
+                    android:layout_marginLeft="23px"
+                    android:src="@drawable/home_shi2_icon"
+                    android:layout_height="70px" />
 
 
             </com.zhy.autolayout.AutoLinearLayout>

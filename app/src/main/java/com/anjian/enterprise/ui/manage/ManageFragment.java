@@ -55,7 +55,7 @@ public class ManageFragment extends BaseFragment<BaseFragmentPresenter, Fragment
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_risk://风险管控
-
+                startActivity(RiskActivity.class);
                 break;
             case R.id.tv_hidden://隐患排查
 

@@ -117,6 +117,7 @@ public class FileDisplayActivity extends BaseActivity {
             downLoadFromNet(getFilePath(), mSuperFileView2);
         } else {
             mSuperFileView2.displayFile(new File(data.getLocal_path()));
+
         }
     }
 

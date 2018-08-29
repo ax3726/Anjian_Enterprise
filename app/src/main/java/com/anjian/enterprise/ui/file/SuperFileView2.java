@@ -81,6 +81,7 @@ public class SuperFileView2 extends FrameLayout implements TbsReaderView.ReaderC
             if (bool) {
 
                 this.mTbsReaderView.openFile(localBundle);
+
             }
         } else {
             TLog.e("文件路径无效！");

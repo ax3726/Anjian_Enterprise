@@ -145,12 +145,6 @@ public class MainActivity extends BaseActivity <BasePresenter,ActivityMainBindin
 
     }
 
-    public void test(View view) {
-       // String url = "https://github.com/ax3726/Anjian/raw/master/app/doc/%E9%BB%8E%E6%98%8E.doc";
-        String url = "https://security-files.oss-cn-shenzhen.aliyuncs.com/1019771090000818177/2018/8/27/1019771090000818177-标杆企业双机制建设汇报材料.doc";
-        FileDisplayActivity.show(MainActivity.this, url);
-
-    }
 
 
 }
