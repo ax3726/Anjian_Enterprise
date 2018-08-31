@@ -3,6 +3,7 @@ package com.anjian.enterprise.common;
 
 import com.anjian.enterprise.model.main.LoginModel;
 import com.anjian.enterprise.model.main.UserInfoModel;
+import com.anjian.enterprise.model.manage.QiYeCheckListModel;
 import com.anjian.enterprise.model.manage.StandardModel;
 import com.lm.lib_common.model.BaseBean;
 
@@ -43,5 +44,20 @@ public interface ApiService {
     @POST("security-monitor/app/enterpriseInfo/listFilePage")
     Flowable<StandardModel> getListFilePage(@Body RequestBody body, @Query("token") String token);
 
+    //添加现场检查列表
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("security-monitor/app/localeExamine/add")
+    Flowable<BaseBean> addQiYeCheck(@Body RequestBody body, @Query("token") String token);
+
+    //现场检查列表
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("security-monitor/app/localeExamine/list")
+    Flowable<QiYeCheckListModel> getQiYeCheckList(@Body RequestBody body, @Query("token") String token);
+
+
+    //更新现场检查列表
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("security-monitor/app/localeExamine/update")
+    Flowable<BaseBean> updateQiYeCheck(@Body RequestBody body, @Query("token") String token);
 
 }

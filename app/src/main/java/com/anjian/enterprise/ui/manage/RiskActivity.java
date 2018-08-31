@@ -1,9 +1,12 @@
 package com.anjian.enterprise.ui.manage;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.anjian.enterprise.R;
 import com.anjian.enterprise.common.Api;
@@ -74,19 +77,43 @@ public class RiskActivity extends BaseActivity<BasePresenter, ActivityRiskBindin
             @Override
             protected void convert(ViewHolder holder, String item, int position) {
                 View view_state = holder.getView(R.id.view_state);
+                LinearLayout lly_item = holder.getView(R.id.lly_item);
+                RecyclerView rc_item = holder.getView(R.id.rc_item);
                 if (position == 0) {
-                    view_state.setBackgroundResource(R.drawable.shape_danger_type4);
+                    view_state.setBackgroundColor(Color.parseColor("#FF0000"));
                 } else if (position == 1) {
-                    view_state.setBackgroundResource(R.drawable.shape_danger_type3);
+                    view_state.setBackgroundColor(Color.parseColor("#FF7F00"));
                 } else if (position == 2) {
-                    view_state.setBackgroundResource(R.drawable.shape_danger_type2);
+                    view_state.setBackgroundColor(Color.parseColor("#FFF717"));
                 } else if (position == 3) {
-                    view_state.setBackgroundResource(R.drawable.shape_danger_type1);
+                    view_state.setBackgroundColor(Color.parseColor("#5896ff"));
                 }
+                List<String> datalist = new ArrayList<>();
+                datalist.add("");
+                datalist.add("");
+                CommonAdapter<String> adapter =new CommonAdapter<String>(aty,R.layout.item_risk_child_layout,datalist) {
+                    @Override
+                    protected void convert(ViewHolder holder, String s, int position) {
+
+
+
+                    }
+                };
+                rc_item.setLayoutManager(new LinearLayoutManager(aty));
+                rc_item.setAdapter(adapter);
+                rc_item.setNestedScrollingEnabled(false);
+                lly_item.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
             }
         };
         mBinding.rcBody.setLayoutManager(new LinearLayoutManager(aty));
         mBinding.rcBody.setAdapter(mAdapter);
+        mBinding.rcBody.setNestedScrollingEnabled(false);
         mBinding.srlBody.setOnRefreshListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {

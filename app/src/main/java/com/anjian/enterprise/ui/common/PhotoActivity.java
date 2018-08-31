@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.anjian.enterprise.common.MyApplication;
 import com.lm.lib_common.base.BaseActivity;
 import com.lm.lib_common.base.BasePresenter;
+import com.lm.lib_common.utils.FileProvider7;
 import com.lm.lib_common.utils.Utils;
 import com.lm.lib_common.utils.runtimepermission.PermissionsManager;
 import com.lm.lib_common.utils.runtimepermission.PermissionsResultAction;
@@ -34,7 +36,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 
 
 /**
@@ -83,7 +84,7 @@ public abstract class PhotoActivity<P extends BasePresenter, B extends ViewDataB
     protected void takephoto() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(Utils.getMemeoryPath("Android/data/cacheData") + temppicname)));
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider7.getUriForFile(aty, new File(MyApplication.getBase_Path() + temppicname)));
         startActivityForResult(intent, 1);
     }
 
@@ -119,7 +120,8 @@ public abstract class PhotoActivity<P extends BasePresenter, B extends ViewDataB
                 picPath = state + "/" + filename;
                 Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
 
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider7.getUriForFile(aty, photoFile));
                 startActivityForResult(intent, 4);
             }
 
@@ -145,7 +147,7 @@ public abstract class PhotoActivity<P extends BasePresenter, B extends ViewDataB
         }
         picPath = state + "/" + filename;
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider7.getUriForFile(aty, photoFile));
         startActivityForResult(intent, 1);
     }
 
@@ -159,7 +161,7 @@ public abstract class PhotoActivity<P extends BasePresenter, B extends ViewDataB
         }, new PermissionsResultAction() {
             @Override
             public void onGranted() {
-                File outputImage = new File(Environment.getExternalStorageDirectory(),
+                File outputImage = new File(MyApplication.getBase_Path(),
                         "output_image.jpg");
                 if (outputImage.exists()) {
                     outputImage.delete();
@@ -226,7 +228,7 @@ public abstract class PhotoActivity<P extends BasePresenter, B extends ViewDataB
                 temppicname = "/takephoto_temp" + String.valueOf(System.currentTimeMillis()).substring(6) + ".jpg";
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(MyApplication.getBase_Path() + temppicname)));
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider7.getUriForFile(aty, new File(MyApplication.getBase_Path() + temppicname)));
                 startActivityForResult(intent, 1);
             }
 
@@ -268,7 +270,7 @@ public abstract class PhotoActivity<P extends BasePresenter, B extends ViewDataB
         temppicname = "/takephoto_temp.jpg";
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(MyApplication.getBase_Path() + temppicname)));
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider7.getUriForFile(aty, new File(MyApplication.getBase_Path() + temppicname)));
         startActivityForResult(intent, 1);
     }
 
@@ -311,10 +313,15 @@ public abstract class PhotoActivity<P extends BasePresenter, B extends ViewDataB
      *
      * @param uri
      */
-    private void startPhotoZoom(Uri uri) {
+    private void startPhotoZoom(Uri uri, boolean isCarmea) {
+
         Log.e("startPhotoZoom.uri==>", uri.toString());
         Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.setDataAndType(uri, "image/*");
+        if (isCarmea) {
+            intent.setDataAndType(getImageContentUri(new File(uri.getPath())), "image/*");
+        } else {
+            intent.setDataAndType(uri, "image/*");
+        }
         //下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
         intent.putExtra("crop", "true");
         // aspectX aspectY 是宽高的比例
@@ -324,13 +331,38 @@ public abstract class PhotoActivity<P extends BasePresenter, B extends ViewDataB
      /*   intent.putExtra("outputX", getOutputX());
         intent.putExtra("outputY", getOutputY());*/
 
-        intent.putExtra("scale",true);
+        intent.putExtra("scale", true);
         intent.putExtra("scaleUpIfNeeded", true);
         File tempFile = new File(returnpicpath);
         intent.putExtra("output", Uri.fromFile(tempFile));// 保存到原文件
         intent.putExtra("outputFormat", "JPEG");// 返回格式
         intent.putExtra("back_icon-data", false);
         startActivityForResult(intent, 3);
+    }
+
+    public Uri getImageContentUri(File imageFile) {
+        String filePath = imageFile.getAbsolutePath();
+        Cursor cursor = getContentResolver().query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                new String[]{MediaStore.Images.Media._ID},
+                MediaStore.Images.Media.DATA + "=? ",
+                new String[]{filePath}, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int id = cursor.getInt(cursor
+                    .getColumnIndex(MediaStore.MediaColumns._ID));
+            Uri baseUri = Uri.parse("content://media/external/images/media");
+            return Uri.withAppendedPath(baseUri, "" + id);
+        } else {
+            if (imageFile.exists()) {
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Images.Media.DATA, filePath);
+                return getContentResolver().insert(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+            } else {
+                return null;
+            }
+        }
     }
 
     @Override
@@ -340,12 +372,12 @@ public abstract class PhotoActivity<P extends BasePresenter, B extends ViewDataB
                 case 1://拍照
                     Log.e("onActivityResult", temppic + temppicname);
                     File temp = new File(temppic + temppicname);
-                    startPhotoZoom(Uri.fromFile(temp));
+                    startPhotoZoom(Uri.fromFile(temp), true);
                     break;
                 case 2://选择照片
-                 outputX = 400;
+                    outputX = 400;
                     outputY = 400;
-                    startPhotoZoom(data.getData());
+                    startPhotoZoom(data.getData(), false);
                     break;
                 case 3://裁剪过后
                     if (data != null) {

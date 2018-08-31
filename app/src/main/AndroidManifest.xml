@@ -3,6 +3,7 @@
     package="com.anjian.enterprise">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
     <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
@@ -17,7 +18,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.anjian.enterprise.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
         <!-- AUTO LAYOUT -->
         <meta-data
             android:name="design_width"
@@ -41,8 +50,20 @@
         <activity android:name=".ui.home.MessageActivity" />
         <activity android:name=".ui.manage.StandardActivity" />
         <activity android:name=".ui.manage.RiskActivity" />
-        <activity android:name=".ui.manage.AddRiskActivity"></activity>
-        <activity android:name=".ui.manage.EditActivity"></activity>
+        <activity android:name=".ui.manage.AddRiskActivity" />
+        <activity android:name=".ui.manage.EditActivity" />
+        <activity
+            android:name=".ui.manage.AddQiyeCheckActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.manage.AutographActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".ui.common.PhotoPreviewActivity" />
+        <activity android:name=".ui.manage.QiYeCheckActivity" />
+        <activity android:name=".ui.manage.QiYeCheckInfoActivity" />
+        <activity android:name=".ui.manage.TodayNeedActivity" />
+        <activity android:name=".ui.manage.SelectActivity"></activity>
     </application>
 
 </manifest>

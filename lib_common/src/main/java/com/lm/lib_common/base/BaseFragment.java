@@ -152,6 +152,11 @@ public abstract class BaseFragment<P extends BaseFragmentPresenter, B extends Vi
 
     }
 
+    protected void startActivity(Class<?> cls, String id) {
+        Intent intent = new Intent(aty, cls);
+        intent.putExtra("id", id);
+        startActivity(intent);
+    }
 
     /**
      * 是否显示头部

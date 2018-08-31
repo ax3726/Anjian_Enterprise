@@ -198,6 +198,11 @@ public abstract class BaseActivity<P extends BasePresenter, B extends ViewDataBi
 
     }
 
+    protected void startActivity(Class<?> cls, String id) {
+        Intent intent = new Intent(aty, cls);
+        intent.putExtra("id", id);
+        startActivity(intent);
+    }
     @Override
     public void showToast(final int id) {
         if (aty != null) {

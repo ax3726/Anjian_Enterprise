@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/lly_body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15px"
+            android:paddingLeft="15px"
+            android:paddingRight="15px"
+            android:paddingTop="15px">
+
+            <TextView
+                android:id="@+id/tv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/back_icon"
+                android:drawablePadding="10px"
+                android:text="返回"
+                android:textColor="@color/color4a4a4a"
+                android:textSize="20px" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="本人签名"
+                android:textColor="@color/color4a4a4a"
+                android:textSize="20px" />
+
+            <TextView
+                android:id="@+id/tv_again"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:onClick="clear"
+                android:text="重画"
+                android:textColor="@color/color4a4a4a"
+                android:textSize="20px" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.anjian.enterprise.widget.LinePathView
+            android:id="@+id/lv_body"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_ok"
+            android:layout_width="100px"
+            android:layout_height="50px"
+            android:layout_gravity="right"
+            android:layout_margin="15px"
+            android:background="@drawable/shape_common_blue"
+            android:gravity="center"
+            android:onClick="save"
+            android:text="完成"
+            android:textColor="@color/colorWhite"
+            android:textSize="20px" />
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+</layout>

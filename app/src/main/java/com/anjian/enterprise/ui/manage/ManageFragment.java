@@ -58,7 +58,7 @@ public class ManageFragment extends BaseFragment<BaseFragmentPresenter, Fragment
                 startActivity(RiskActivity.class);
                 break;
             case R.id.tv_hidden://隐患排查
-
+                startActivity(QiYeCheckActivity.class, "1019771090000818177");
                 break;
             case R.id.tv_standard://安全标准化
                 startActivity(StandardActivity.class);

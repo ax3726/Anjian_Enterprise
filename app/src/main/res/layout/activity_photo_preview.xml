@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.zhy.autolayout.AutoFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color000000"
+        android:orientation="vertical">
+
+
+        <com.lm.lib_common.widget.photoview.PhotoView
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter" />
+
+
+        <LinearLayout
+            android:id="@+id/lly_left"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/id_leftBtnImg"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:src="@drawable/back_icon" />
+        </LinearLayout>
+    </com.zhy.autolayout.AutoFrameLayout>
+</layout>
