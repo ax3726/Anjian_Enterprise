@@ -1,5 +1,6 @@
 package com.anjian.enterprise.ui.manage;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,10 +27,13 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StandardActivity extends BaseActivity<BasePresenter, ActivityStandardBinding> {
 
     private List<StandardModel.DataBean> mDataList = new ArrayList<>();
+    private List<StandardModel.DataBean> mDataListCount;
     private CommonAdapter<StandardModel.DataBean> mAdapter;
     private int mPosition = 1;
     private int mSize = 10;
@@ -47,7 +51,9 @@ public class StandardActivity extends BaseActivity<BasePresenter, ActivityStanda
         mTitleBarLayout.setRightListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(aty, EditActivity.class);
+                intent.putExtra("txt", "搜索关键字");
+                startActivityForResult(intent, 1001);
             }
         });
     }
@@ -119,13 +125,13 @@ public class StandardActivity extends BaseActivity<BasePresenter, ActivityStanda
                     @Override
                     public void onSuccess(StandardModel baseBean) {
                         finishRefersh();
-                        if (mPosition==1) {
+                        if (mPosition == 1) {
                             mDataList.clear();
                         }
                         List<StandardModel.DataBean> data = baseBean.getData();
-                        if (data!=null&data.size()>0) {
+                        if (data != null & data.size() > 0) {
                             mDataList.addAll(data);
-                            if (data.size()<mSize) {
+                            if (data.size() < mSize) {
                                 mBinding.srlBody.finishLoadmoreWithNoMoreData();
                             }
                         }
@@ -142,5 +148,39 @@ public class StandardActivity extends BaseActivity<BasePresenter, ActivityStanda
                         finishRefersh();
                     }
                 });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null && resultCode == RESULT_OK) {
+            String result = data.getStringExtra("result");
+            switch (requestCode) {
+                case 1001://搜索关键字
+                    List<StandardModel.DataBean> search = search(result, mDataList);
+
+                    if (search.size() == 0) {
+                        mBinding.rcBody.setBackgroundResource(R.drawable.img_deafault_icon);
+                    } else {
+                        mBinding.rcBody.setBackground(null);
+                    }
+                    mDataList.clear();
+                    mDataList.addAll(search);
+                    mAdapter.notifyDataSetChanged();
+                    break;
+            }
+        }
+    }
+
+    public List<StandardModel.DataBean> search(String name, List<StandardModel.DataBean> list) {
+        List<StandardModel.DataBean> results = new ArrayList();
+        Pattern pattern = Pattern.compile(name);
+        for (int i = 0; i < list.size(); i++) {
+            Matcher matcher = pattern.matcher((list.get(i)).getFileName());
+            if (matcher.find()) {
+                results.add(list.get(i));
+            }
+        }
+        return results;
     }
 }

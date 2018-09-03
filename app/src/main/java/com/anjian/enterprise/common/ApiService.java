@@ -4,6 +4,7 @@ package com.anjian.enterprise.common;
 import com.anjian.enterprise.model.main.LoginModel;
 import com.anjian.enterprise.model.main.UserInfoModel;
 import com.anjian.enterprise.model.manage.QiYeCheckListModel;
+import com.anjian.enterprise.model.manage.RiskModel;
 import com.anjian.enterprise.model.manage.StandardModel;
 import com.lm.lib_common.model.BaseBean;
 
@@ -60,4 +61,30 @@ public interface ApiService {
     @POST("security-monitor/app/localeExamine/update")
     Flowable<BaseBean> updateQiYeCheck(@Body RequestBody body, @Query("token") String token);
 
+    //新增2.风险辨识
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("security-monitor/app/dangerIdentification/add")
+    Flowable<BaseBean> addDangerIdentification(@Body RequestBody body, @Query("token") String token);
+
+    //风险管控的列表
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @GET("security-monitor/app/dangerIdentification/list/{id}")
+    Flowable<RiskModel> getDangerIdentificationList(@Path("id") String id, @Query("token") String token);
+
+    //今日待办
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @GET("security-monitor/app/dangerIdentification/findNeedExamine/{id}")
+    Flowable<RiskModel> getToDayList(@Path("id") String id, @Query("token") String token);
+
+
+    //检查是否在检查周期里
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @GET("security-monitor/app/dangerIdentification/status/{id}")
+    Flowable<BaseBean> checkStatus(@Path("id") String id, @Query("token") String token);
+
+
+    //增加风险确认
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("security-monitor/app/dangerIdentificationRecord/add")
+    Flowable<BaseBean> addDangerIdentificationRecord(@Body RequestBody body, @Query("token") String token);
 }

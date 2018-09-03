@@ -74,6 +74,7 @@ public class SelectActivity extends BaseActivity<BasePresenter, ActivitySelectBi
                         notifyDataSetChanged();
                         Intent intent = new Intent();
                         intent.putExtra("result", item);
+                        intent.putExtra("index", position);
                         setResult(RESULT_OK, intent);
                         finish();
                     }

@@ -47,9 +47,9 @@
                 android:background="@color/colorLine" />
 
             <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/lly_today"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:orientation="horizontal"
                 android:paddingBottom="10px"
                 android:paddingLeft="15px"

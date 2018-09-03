@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.anjian.enterprise.R;
 import com.anjian.enterprise.databinding.FragmentHomeBinding;
+import com.anjian.enterprise.ui.manage.TodayNeedActivity;
 import com.lm.lib_common.base.BaseFragment;
 import com.lm.lib_common.base.BaseFragmentPresenter;
 
@@ -46,7 +47,7 @@ public class HomeFragment extends BaseFragment<BaseFragmentPresenter, FragmentHo
         mTitleBarLayout.setLeftListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // startActivity(DocumentActivity.class);
+                // startActivity(DocumentActivity.class);
             }
         });
         mTitleBarLayout.setRightShow(true);
@@ -55,6 +56,17 @@ public class HomeFragment extends BaseFragment<BaseFragmentPresenter, FragmentHo
             @Override
             public void onClick(View v) {
                 startActivity(MessageActivity.class);
+            }
+        });
+    }
+
+    @Override
+    protected void initEvent() {
+        super.initEvent();
+        mBinding.llyToday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(TodayNeedActivity.class);
             }
         });
     }

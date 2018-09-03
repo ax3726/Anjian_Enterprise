@@ -4,6 +4,7 @@ package com.anjian.enterprise.ui.manage;
 import android.view.View;
 
 import com.anjian.enterprise.R;
+import com.anjian.enterprise.common.MyApplication;
 import com.anjian.enterprise.databinding.FragmentManageBinding;
 import com.lm.lib_common.base.BaseFragment;
 import com.lm.lib_common.base.BaseFragmentPresenter;
@@ -58,7 +59,7 @@ public class ManageFragment extends BaseFragment<BaseFragmentPresenter, Fragment
                 startActivity(RiskActivity.class);
                 break;
             case R.id.tv_hidden://隐患排查
-                startActivity(QiYeCheckActivity.class, "1019771090000818177");
+                startActivity(QiYeCheckActivity.class, MyApplication.getInstance().getId());
                 break;
             case R.id.tv_standard://安全标准化
                 startActivity(StandardActivity.class);

@@ -59,6 +59,7 @@ public class LoginActivity extends BaseActivity<BasePresenter, ActivityLoginBind
             @Override
             public void onSuccess(LoginModel baseBean) {
                 MyApplication.getInstance().setToken(baseBean.getData());
+                MyApplication.getInstance().setId("1020316826354462722");
                 CacheService.getIntance().setUser(new UserModel(phone,password));
                 startActivity(MainActivity.class);
                 finish();

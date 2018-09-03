@@ -63,7 +63,8 @@
         <activity android:name=".ui.manage.QiYeCheckActivity" />
         <activity android:name=".ui.manage.QiYeCheckInfoActivity" />
         <activity android:name=".ui.manage.TodayNeedActivity" />
-        <activity android:name=".ui.manage.SelectActivity"></activity>
+        <activity android:name=".ui.manage.SelectActivity" />
+        <activity android:name=".ui.manage.DangerInfoActivity"></activity>
     </application>
 
 </manifest>

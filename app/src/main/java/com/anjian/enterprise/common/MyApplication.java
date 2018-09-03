@@ -37,6 +37,7 @@ public class MyApplication extends ThisApplication {
     private static MyApplication instance;
     public static String Base_Path = "";
     private String token = "";//token
+    private String mId = "";//企业id
 
     public static MyApplication getInstance() {
         return instance;
@@ -121,6 +122,14 @@ public class MyApplication extends ThisApplication {
                 return new ClassicsFooter(context).setDrawableSize(20);
             }
         });
+    }
+
+    public void setId(String mId) {
+        this.mId = mId;
+    }
+
+    public String getId() {
+        return mId;
     }
 
     public String getToken() {

@@ -7,12 +7,20 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.anjian.enterprise.R;
+import com.anjian.enterprise.common.Api;
+import com.anjian.enterprise.common.MyApplication;
 import com.anjian.enterprise.databinding.ActivityAddRiskBinding;
+import com.anjian.enterprise.model.request.AddRiskRequest;
 import com.anjian.enterprise.ui.common.PhotoActivity;
+import com.anjian.enterprise.utils.DemoUtils;
 import com.anjian.enterprise.widget.popuwindow.SelectPhotopopuwindow;
 import com.bumptech.glide.Glide;
 import com.lm.lib_common.base.BaseActivity;
+import com.lm.lib_common.base.BaseNetListener;
 import com.lm.lib_common.base.BasePresenter;
+import com.lm.lib_common.model.BaseBean;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -44,8 +52,7 @@ public class AddRiskActivity extends PhotoActivity<BasePresenter, ActivityAddRis
         mTitleBarLayout.setRightListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                submit();
             }
         });
     }
@@ -170,6 +177,85 @@ public class AddRiskActivity extends PhotoActivity<BasePresenter, ActivityAddRis
         }
     }
 
+    private void submit() {
+
+        String Name = mBinding.tvName.getText().toString().trim();
+        String Dan = mBinding.tvDan.getText().toString().trim();
+        String Shigu = mBinding.tvShigu.getText().toString().trim();
+        String Maybe = mBinding.tvMaybe.getText().toString().trim();
+        String Rate = mBinding.tvRate.getText().toString().trim();
+        String Aftermath = mBinding.tvAftermath.getText().toString().trim();
+
+        if (TextUtils.isEmpty(mImgPath)) {
+            showToast("请添加现场图片!");
+            return;
+        }
+        if (TextUtils.isEmpty(Name)) {
+            showToast("风险点名称不能为空!");
+            return;
+        }
+        if (TextUtils.isEmpty(Dan)) {
+            showToast("请选择单位类别!");
+            return;
+        }
+        if (TextUtils.isEmpty(Shigu)) {
+            showToast("请选择可能发生的事故类型!");
+            return;
+        }
+
+        if (TextUtils.isEmpty(Maybe)) {
+            showToast("请选择事故发生的可能性!");
+            return;
+        }
+        if (TextUtils.isEmpty(Rate)) {
+            showToast("请选择暴露于危险环境的频率!");
+            return;
+        }
+        if (TextUtils.isEmpty(Aftermath)) {
+            showToast("请选择事故后果严重程度!");
+            return;
+        }
+
+
+        AddRiskRequest addRiskRequest=new AddRiskRequest();
+
+        addRiskRequest.setEnterpriseId(MyApplication.getInstance().getId());
+        addRiskRequest.setLocaleImg(DemoUtils.imageToBase64(mImgPath));
+        addRiskRequest.setDangerName(Name);
+        addRiskRequest.setHappenCaseType(mBinding.tvShigu.getTag().toString());
+        addRiskRequest.setHappenCasePossible(mBinding.tvMaybe.getTag().toString());
+        addRiskRequest.setDangerRate(mBinding.tvRate.getTag().toString());
+        addRiskRequest.setCaseSerious(mBinding.tvAftermath.getTag().toString());
+        addRiskRequest.setUnitType(mBinding.tvDan.getTag().toString());
+
+        Api.getApi().addDangerIdentification(getRequestBody(addRiskRequest), MyApplication.getInstance().getToken())
+                .compose(callbackOnIOToMainThread())
+                .subscribe(new BaseNetListener<BaseBean>(this,true) {
+                    @Override
+                    public void onSuccess(BaseBean baseBean) {
+                        showToast(baseBean.getMessage());
+                        EventBus.getDefault().post("刷新");
+                        new Thread() {
+                            @Override
+                            public void run() {
+                                super.run();
+                                try {
+                                    sleep(1500);
+                                    finish();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }.start();
+                    }
+
+                    @Override
+                    public void onFail(String errMsg) {
+
+                    }
+                });
+    }
+
     @Override
     public void photoFaild() {
         showToast("图片加载失败!");
@@ -181,24 +267,30 @@ public class AddRiskActivity extends PhotoActivity<BasePresenter, ActivityAddRis
 
         if (data != null && resultCode == RESULT_OK) {
             String result = data.getStringExtra("result");
+            int index = data.getIntExtra("index", 0);
             switch (requestCode) {
                 case 1001://名称
                     mBinding.tvName.setText(result);
                     break;
                 case 1002://
                     mBinding.tvDan.setText(result);
+                    mBinding.tvDan.setTag(index);
                     break;
                 case 1003://
                     mBinding.tvShigu.setText(result);
+                    mBinding.tvShigu.setTag(index);
                     break;
                 case 1004://
                     mBinding.tvMaybe.setText(result);
+                    mBinding.tvMaybe.setTag(index);
                     break;
                 case 1005://
                     mBinding.tvRate.setText(result);
+                    mBinding.tvRate.setTag(index);
                     break;
                 case 1006://
                     mBinding.tvAftermath.setText(result);
+                    mBinding.tvAftermath.setTag(index);
                     break;
             }
         }
