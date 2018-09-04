@@ -142,7 +142,9 @@ public abstract class BaseActivity<P extends BasePresenter, B extends ViewDataBi
         load.into(img);
     }
 
-
+    protected void startActivityForResult(Class<?> cls, int requestCode) {
+        startActivityForResult(new Intent(aty, cls), requestCode);
+    }
     protected void startActivity(Class<?> cls) {
         startActivity(new Intent(aty, cls));
     }

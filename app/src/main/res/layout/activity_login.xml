@@ -12,6 +12,7 @@
 
         <ImageView
             android:layout_width="wrap_content"
+            android:visibility="invisible"
             android:layout_height="wrap_content"
             android:layout_marginTop="69px"
             android:src="@drawable/logo" />
@@ -20,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6px"
-            android:text="欢迎登录安评！"
+            android:text="@string/login_title"
             android:textColor="@color/color3e3e3e"
             android:textSize="34px" />
 

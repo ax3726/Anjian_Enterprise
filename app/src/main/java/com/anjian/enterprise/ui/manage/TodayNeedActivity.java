@@ -133,7 +133,11 @@ public class TodayNeedActivity extends BaseActivity<BasePresenter, ActivityToday
                         if (low != null && low.size() > 0) {
                             mDataList.addAll( low);
                         }
-
+                        if ( mDataList.size() == 0) {
+                            mBinding.rcBody.setBackgroundResource(R.drawable.img_deafault_icon);
+                        } else {
+                            mBinding.rcBody.setBackground(null);
+                        }
                         mAdapter.notifyDataSetChanged();
                     }
 

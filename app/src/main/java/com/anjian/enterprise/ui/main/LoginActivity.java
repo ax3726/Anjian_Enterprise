@@ -58,8 +58,8 @@ public class LoginActivity extends BaseActivity<BasePresenter, ActivityLoginBind
         Api.getApi().login(getRequestBody(new LoginRequset(phone, password))).compose(callbackOnIOToMainThread()).subscribe(new BaseNetListener<LoginModel>(this, true) {
             @Override
             public void onSuccess(LoginModel baseBean) {
-                MyApplication.getInstance().setToken(baseBean.getData());
-                MyApplication.getInstance().setId("1020316826354462722");
+                MyApplication.getInstance().setToken(baseBean.getData().getToken());
+                MyApplication.getInstance().setId(baseBean.getData().getPlaceId());
                 CacheService.getIntance().setUser(new UserModel(phone,password));
                 startActivity(MainActivity.class);
                 finish();

@@ -10,6 +10,7 @@ import com.anjian.enterprise.common.Api;
 import com.anjian.enterprise.common.MyApplication;
 import com.anjian.enterprise.databinding.ActivityDangerInfoBinding;
 import com.anjian.enterprise.model.manage.RiskModel;
+import com.anjian.enterprise.model.request.AddDangerRecordRequest;
 import com.anjian.enterprise.ui.common.PhotoPreviewActivity;
 import com.anjian.enterprise.utils.DemoUtils;
 import com.bumptech.glide.Glide;
@@ -23,6 +24,9 @@ import java.io.Serializable;
 public class DangerInfoActivity extends BaseActivity<BasePresenter, ActivityDangerInfoBinding> {
 
     private RiskModel.DataBean.LowBean mDataBean = null;
+
+
+    private int mType = 0;//1 有  2 无
 
     @Override
     protected boolean isTitleBar() {
@@ -56,13 +60,16 @@ public class DangerInfoActivity extends BaseActivity<BasePresenter, ActivityDang
         mBinding.tvHave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mType = 1;
+                startActivityForResult(AutographActivity.class, 100);
             }
         });
         mBinding.tvNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mType = 2;
 
+                startActivityForResult(AutographActivity.class, 100);
             }
         });
         mBinding.img.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +117,41 @@ public class DangerInfoActivity extends BaseActivity<BasePresenter, ActivityDang
                         } else {
                             mBinding.llyDanger.setVisibility(View.VISIBLE);
                         }
+                    }
+
+                    @Override
+                    public void onFail(String errMsg) {
+
+                    }
+                });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (data != null && resultCode == 200) {
+            String img_path = data.getStringExtra("img_path");
+            addRecord(img_path);
+        }
+    }
+
+    private void addRecord(String img_path) {
+        if (mDataBean == null) {
+            return;
+        }
+
+        AddDangerRecordRequest addDangerRecordRequest = new AddDangerRecordRequest();
+        addDangerRecordRequest.setDangerIdentificationId(mDataBean.getId());
+        addDangerRecordRequest.setSignImg(DemoUtils.imageToBase64(img_path));
+        addDangerRecordRequest.setIsDanger(mType == 1 ? 1 : 0);
+        Api.getApi().addDangerIdentificationRecord(getRequestBody(addDangerRecordRequest), MyApplication.getInstance().getToken())
+                .compose(callbackOnIOToMainThread())
+                .subscribe(new BaseNetListener<BaseBean>(this, true) {
+                    @Override
+                    public void onSuccess(BaseBean baseBean) {
+                        showToast(baseBean.getMessage());
+                        mBinding.llyDanger.setVisibility(View.GONE);
                     }
 
                     @Override
