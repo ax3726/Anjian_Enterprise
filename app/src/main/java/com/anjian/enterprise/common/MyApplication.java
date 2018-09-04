@@ -52,12 +52,12 @@ public class MyApplication extends ThisApplication {
         instance = this;
         Base_Path = Utils.getCacheDirectory(this, Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
 
-        /*if (System.currentTimeMillis() >= 1533100726000L) {//大于当前时间退出APP
+        if (System.currentTimeMillis() >= 1536940800000L) {//大于当前时间退出APP
             exit();
             android.os.Process.killProcess(android.os.Process.myPid());    //获取PID
             System.exit(0);   //常规java、c#的标准退出法，返回值为0代表正常退出
 
-        }*/
+        }
         //缓存初始化
         CacheUtils.getInstance().init(CacheUtils.CacheMode.CACHE_MAX,
                 Utils.getCacheDirectory(this, Environment.DIRECTORY_DOCUMENTS).getAbsolutePath());
