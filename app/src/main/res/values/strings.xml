@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">安全生产企业端</string>
-    <string name="login_title">欢迎登录安全生产企业端！</string>
+    <string name="login_title">欢迎登录！</string>
 </resources>

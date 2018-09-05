@@ -58,11 +58,16 @@ public class LoginActivity extends BaseActivity<BasePresenter, ActivityLoginBind
         Api.getApi().login(getRequestBody(new LoginRequset(phone, password))).compose(callbackOnIOToMainThread()).subscribe(new BaseNetListener<LoginModel>(this, true) {
             @Override
             public void onSuccess(LoginModel baseBean) {
-                MyApplication.getInstance().setToken(baseBean.getData().getToken());
-                MyApplication.getInstance().setId(baseBean.getData().getPlaceId());
-                CacheService.getIntance().setUser(new UserModel(phone,password));
-                startActivity(MainActivity.class);
-                finish();
+                if ("2".equals(baseBean.getData().getUserType())) {
+                    MyApplication.getInstance().setToken(baseBean.getData().getToken());
+                    MyApplication.getInstance().setId(baseBean.getData().getPlaceId());
+                    CacheService.getIntance().setUser(new UserModel(phone,password));
+                    startActivity(MainActivity.class);
+                    finish();
+                } else {
+                    showToast("该用户不是企业用户，无法登陆！");
+                }
+
             }
 
             @Override

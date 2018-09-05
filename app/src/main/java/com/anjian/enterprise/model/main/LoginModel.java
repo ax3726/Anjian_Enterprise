@@ -6,10 +6,11 @@ package com.anjian.enterprise.model.main;
 
 public class LoginModel {
 
+
     /**
      * code : 200
      * count : 0
-     * data : {"placeId":"1024913629628477441","placeType":0,"token":"2157ab46947d2837627c9a6cf38fe72b"}
+     * data : {"placeId":"1024913629628477441","placeType":0,"userType":"1","token":"4ead169f39691c569f4a54f743b119cd"}
      * message : 成功
      */
 
@@ -54,11 +55,13 @@ public class LoginModel {
         /**
          * placeId : 1024913629628477441
          * placeType : 0
-         * token : 2157ab46947d2837627c9a6cf38fe72b
+         * userType : 1
+         * token : 4ead169f39691c569f4a54f743b119cd
          */
 
         private String placeId;
         private int placeType;
+        private String userType;
         private String token;
 
         public String getPlaceId() {
@@ -75,6 +78,14 @@ public class LoginModel {
 
         public void setPlaceType(int placeType) {
             this.placeType = placeType;
+        }
+
+        public String getUserType() {
+            return userType;
+        }
+
+        public void setUserType(String userType) {
+            this.userType = userType;
         }
 
         public String getToken() {
