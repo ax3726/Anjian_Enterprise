@@ -8,6 +8,7 @@ import com.anjian.enterprise.common.Api;
 import com.anjian.enterprise.common.CacheService;
 import com.anjian.enterprise.common.MyApplication;
 import com.anjian.enterprise.databinding.ActivityWelcomeBinding;
+import com.anjian.enterprise.model.UserModel;
 import com.anjian.enterprise.model.main.LoginModel;
 import com.anjian.enterprise.model.request.LoginRequset;
 import com.lm.lib_common.base.BaseActivity;
@@ -25,21 +26,27 @@ public class WelcomeActivity extends BaseActivity<BasePresenter, ActivityWelcome
                     .subscribe(new BaseNetListener<LoginModel>(this, false) {
                         @Override
                         public void onSuccess(LoginModel baseBean) {
-                            MyApplication.getInstance().setToken(baseBean.getData().getToken());
-                            MyApplication.getInstance().setId(baseBean.getData().getPlaceId());
-                            new Thread() {
-                                @Override
-                                public void run() {
-                                    super.run();
-                                    try {
-                                        sleep(1500);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
+                            if ("2".equals(baseBean.getData().getUserType())) {
+                                MyApplication.getInstance().setToken(baseBean.getData().getToken());
+                                MyApplication.getInstance().setId(baseBean.getData().getPlaceId());
+                                new Thread() {
+                                    @Override
+                                    public void run() {
+                                        super.run();
+                                        try {
+                                            sleep(1500);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        startActivity(MainActivity.class);
+                                        finish();
                                     }
-                                    startActivity(MainActivity.class);
-                                    finish();
-                                }
-                            }.start();
+                                }.start();
+                            } else {
+                                showToast("该用户不是企业用户，无法登陆！");
+                                toLogin();
+                            }
+
                         }
 
                         @Override

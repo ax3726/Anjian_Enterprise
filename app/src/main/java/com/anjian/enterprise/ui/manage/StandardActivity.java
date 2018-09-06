@@ -118,7 +118,8 @@ public class StandardActivity extends BaseActivity<BasePresenter, ActivityStanda
         AddListRequest addListRequest = new AddListRequest();
         addListRequest.setCurrent(mPosition);
         addListRequest.setSize(mSize);
-        addListRequest.getCondition().setId("1019771090000818177");
+//        addListRequest.getCondition().setId("1019771090000818177");
+        addListRequest.getCondition().setId(MyApplication.getInstance().getId());
         Api.getApi().getListFilePage(getRequestBody(addListRequest), MyApplication.getInstance().getToken())
                 .compose(callbackOnIOToMainThread())
                 .subscribe(new BaseNetListener<StandardModel>(this, true) {
