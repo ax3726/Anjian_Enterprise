@@ -82,6 +82,11 @@ public interface ApiService {
     @GET("security-monitor/app/dangerIdentification/status/{id}")
     Flowable<BaseBean> checkStatus(@Path("id") String id, @Query("token") String token);
 
+    //在线咨询
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @GET("security-monitor/app/sysArea/{id}")
+    Flowable<BaseBean> online(@Path("id") String id, @Query("token") String token);
+
 
     //增加风险确认
     @Headers({"Content-Type: application/json", "Accept: application/json"})

@@ -4,10 +4,13 @@ package com.anjian.enterprise.ui.manage;
 import android.view.View;
 
 import com.anjian.enterprise.R;
+import com.anjian.enterprise.common.Api;
 import com.anjian.enterprise.common.MyApplication;
 import com.anjian.enterprise.databinding.FragmentManageBinding;
 import com.lm.lib_common.base.BaseFragment;
 import com.lm.lib_common.base.BaseFragmentPresenter;
+import com.lm.lib_common.base.BaseNetListener;
+import com.lm.lib_common.model.BaseBean;
 
 /**
  * Created by LiMing on 2018/6/25.
@@ -68,8 +71,24 @@ public class ManageFragment extends BaseFragment<BaseFragmentPresenter, Fragment
 
                 break;
             case R.id.tv_message://在线咨询
-
+                getOnline();
                 break;
         }
+    }
+
+    private void getOnline() {
+        Api.getApi().online(MyApplication.getInstance().getId(), MyApplication.getInstance().getToken())
+                .compose(callbackOnIOToMainThread())
+                .subscribe(new BaseNetListener<BaseBean>(this, true) {
+                    @Override
+                    public void onSuccess(BaseBean baseBean) {
+
+                    }
+
+                    @Override
+                    public void onFail(String errMsg) {
+
+                    }
+                });
     }
 }

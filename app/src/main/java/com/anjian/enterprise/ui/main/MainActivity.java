@@ -1,5 +1,7 @@
 package com.anjian.enterprise.ui.main;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -28,6 +30,9 @@ import com.lm.lib_common.base.BaseActivity;
 import com.lm.lib_common.base.BaseNetListener;
 import com.lm.lib_common.base.BasePresenter;
 import com.lm.lib_common.utils.DoubleClickExitHelper;
+import com.pgyersdk.javabean.AppBean;
+import com.pgyersdk.update.PgyUpdateManager;
+import com.pgyersdk.update.UpdateManagerListener;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.smtt.sdk.ValueCallback;
 
@@ -41,7 +46,7 @@ import java.util.List;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 
-public class MainActivity extends BaseActivity <BasePresenter,ActivityMainBinding>{
+public class MainActivity extends BaseActivity<BasePresenter, ActivityMainBinding> {
 
     private HomeFragment mHomeFragment;
     private ManageFragment mManageFragment;
@@ -86,7 +91,42 @@ public class MainActivity extends BaseActivity <BasePresenter,ActivityMainBindin
         });
 
         initFragment();
-      //  DemoUtils.getLocation(aty);
+        //  DemoUtils.getLocation(aty);
+        inintVersion();
+    }
+
+    private void inintVersion() {
+
+        PgyUpdateManager.setIsForced(true); //设置是否强制更新。true为强制更新；false为不强制更新（默认值）。
+        PgyUpdateManager.register(this, new UpdateManagerListener() {
+            @Override
+            public void onNoUpdateAvailable() {
+
+            }
+
+            @Override
+            public void onUpdateAvailable(String result) {
+                // 将新版本信息封装到AppBean中
+                final AppBean appBean = getAppBeanFromString(result);
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("更新")
+                        .setMessage("")
+                        .setNegativeButton(
+                                "确定",
+                                new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(
+                                            DialogInterface dialog,
+                                            int which) {
+                                        startDownloadTask(
+                                                aty,
+                                                appBean.getDownloadURL());
+                                    }
+                                }).show();
+            }
+        });
+
     }
 
     @Override
@@ -139,13 +179,16 @@ public class MainActivity extends BaseActivity <BasePresenter,ActivityMainBindin
         }
         return super.onKeyDown(keyCode, event);
     }
+
     @Override
-    public
-    void onClick(View view) {
+    public void onClick(View view) {
 
     }
 
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PgyUpdateManager.unregister();
+    }
 }
 
