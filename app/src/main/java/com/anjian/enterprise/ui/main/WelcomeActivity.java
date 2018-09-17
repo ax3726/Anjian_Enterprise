@@ -29,6 +29,7 @@ public class WelcomeActivity extends BaseActivity<BasePresenter, ActivityWelcome
                             if ("2".equals(baseBean.getData().getUserType())) {
                                 MyApplication.getInstance().setToken(baseBean.getData().getToken());
                                 MyApplication.getInstance().setId(baseBean.getData().getPlaceId());
+                                MyApplication.getInstance().setAreaId(baseBean.getData().getAreaId());
                                 new Thread() {
                                     @Override
                                     public void run() {

@@ -10,7 +10,7 @@ public class LoginModel {
     /**
      * code : 200
      * count : 0
-     * data : {"placeId":"1024913629628477441","placeType":0,"userType":"1","token":"4ead169f39691c569f4a54f743b119cd"}
+     * data : {"placeType":0,"areaId":"1041576354735632386","userTypeDesc":"企场用户","areaName":"金井社区","placeId":"1041577991650848769","userType":"2","token":"53bf9cd51077b2498010fc3177509816"}
      * message : 成功
      */
 
@@ -53,24 +53,22 @@ public class LoginModel {
 
     public static class DataBean {
         /**
-         * placeId : 1024913629628477441
          * placeType : 0
-         * userType : 1
-         * token : 4ead169f39691c569f4a54f743b119cd
+         * areaId : 1041576354735632386
+         * userTypeDesc : 企场用户
+         * areaName : 金井社区
+         * placeId : 1041577991650848769
+         * userType : 2
+         * token : 53bf9cd51077b2498010fc3177509816
          */
 
-        private String placeId;
         private int placeType;
+        private String areaId;
+        private String userTypeDesc;
+        private String areaName;
+        private String placeId;
         private String userType;
         private String token;
-
-        public String getPlaceId() {
-            return placeId;
-        }
-
-        public void setPlaceId(String placeId) {
-            this.placeId = placeId;
-        }
 
         public int getPlaceType() {
             return placeType;
@@ -78,6 +76,38 @@ public class LoginModel {
 
         public void setPlaceType(int placeType) {
             this.placeType = placeType;
+        }
+
+        public String getAreaId() {
+            return areaId;
+        }
+
+        public void setAreaId(String areaId) {
+            this.areaId = areaId;
+        }
+
+        public String getUserTypeDesc() {
+            return userTypeDesc;
+        }
+
+        public void setUserTypeDesc(String userTypeDesc) {
+            this.userTypeDesc = userTypeDesc;
+        }
+
+        public String getAreaName() {
+            return areaName;
+        }
+
+        public void setAreaName(String areaName) {
+            this.areaName = areaName;
+        }
+
+        public String getPlaceId() {
+            return placeId;
+        }
+
+        public void setPlaceId(String placeId) {
+            this.placeId = placeId;
         }
 
         public String getUserType() {

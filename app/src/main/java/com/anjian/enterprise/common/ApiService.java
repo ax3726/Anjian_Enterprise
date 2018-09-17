@@ -3,6 +3,7 @@ package com.anjian.enterprise.common;
 
 import com.anjian.enterprise.model.main.LoginModel;
 import com.anjian.enterprise.model.main.UserInfoModel;
+import com.anjian.enterprise.model.manage.OnlineModel;
 import com.anjian.enterprise.model.manage.QiYeCheckListModel;
 import com.anjian.enterprise.model.manage.RiskModel;
 import com.anjian.enterprise.model.manage.StandardModel;
@@ -85,7 +86,7 @@ public interface ApiService {
     //在线咨询
     @Headers({"Content-Type: application/json", "Accept: application/json"})
     @GET("security-monitor/app/sysArea/{id}")
-    Flowable<BaseBean> online(@Path("id") String id, @Query("token") String token);
+    Flowable<OnlineModel> online(@Path("id") String id, @Query("token") String token);
 
 
     //增加风险确认

@@ -61,6 +61,7 @@ public class LoginActivity extends BaseActivity<BasePresenter, ActivityLoginBind
                 if ("2".equals(baseBean.getData().getUserType())) {
                     MyApplication.getInstance().setToken(baseBean.getData().getToken());
                     MyApplication.getInstance().setId(baseBean.getData().getPlaceId());
+                    MyApplication.getInstance().setAreaId(baseBean.getData().getAreaId());
                     CacheService.getIntance().setUser(new UserModel(phone,password));
                     startActivity(MainActivity.class);
                     finish();

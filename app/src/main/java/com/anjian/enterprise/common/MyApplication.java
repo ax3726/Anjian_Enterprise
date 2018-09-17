@@ -38,6 +38,7 @@ public class MyApplication extends ThisApplication {
     public static String Base_Path = "";
     private String token = "";//token
     private String mId = "";//企业id
+    private String mAreaId = "";//区域id
 
     public static MyApplication getInstance() {
         return instance;
@@ -52,7 +53,7 @@ public class MyApplication extends ThisApplication {
         instance = this;
         Base_Path = Utils.getCacheDirectory(this, Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
 
-        if (System.currentTimeMillis() >= 1536940800000L) {//大于当前时间退出APP
+        if (System.currentTimeMillis() >= 1538293036000L) {//大于当前时间退出APP
             exit();
             android.os.Process.killProcess(android.os.Process.myPid());    //获取PID
             System.exit(0);   //常规java、c#的标准退出法，返回值为0代表正常退出
@@ -150,6 +151,14 @@ public class MyApplication extends ThisApplication {
 
     public static void setList(List<Activity> mList) {
         MyApplication.mList = mList;
+    }
+
+    public String getAreaId() {
+        return mAreaId;
+    }
+
+    public void setAreaId(String mAreaId) {
+        this.mAreaId = mAreaId;
     }
 
     public void exit() {

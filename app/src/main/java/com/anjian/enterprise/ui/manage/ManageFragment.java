@@ -1,12 +1,16 @@
 package com.anjian.enterprise.ui.manage;
 
 
+import android.content.Intent;
+import android.net.Uri;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.anjian.enterprise.R;
 import com.anjian.enterprise.common.Api;
 import com.anjian.enterprise.common.MyApplication;
 import com.anjian.enterprise.databinding.FragmentManageBinding;
+import com.anjian.enterprise.model.manage.OnlineModel;
 import com.lm.lib_common.base.BaseFragment;
 import com.lm.lib_common.base.BaseFragmentPresenter;
 import com.lm.lib_common.base.BaseNetListener;
@@ -77,12 +81,17 @@ public class ManageFragment extends BaseFragment<BaseFragmentPresenter, Fragment
     }
 
     private void getOnline() {
-        Api.getApi().online(MyApplication.getInstance().getId(), MyApplication.getInstance().getToken())
+        Api.getApi().online(MyApplication.getInstance().getAreaId(), MyApplication.getInstance().getToken())
                 .compose(callbackOnIOToMainThread())
-                .subscribe(new BaseNetListener<BaseBean>(this, true) {
+                .subscribe(new BaseNetListener<OnlineModel>(this, true) {
                     @Override
-                    public void onSuccess(BaseBean baseBean) {
-
+                    public void onSuccess(OnlineModel baseBean) {
+                        String contactPhone = baseBean.getData().getContactPhone();
+                        if (!TextUtils.isEmpty(contactPhone)) {
+                            call(contactPhone);
+                        } else {
+                            showToast("数据有误!");
+                        }
                     }
 
                     @Override
@@ -90,5 +99,17 @@ public class ManageFragment extends BaseFragment<BaseFragmentPresenter, Fragment
 
                     }
                 });
+    }
+
+
+    /**
+     * 调用拨号界面
+     *
+     * @param phone 电话号码
+     */
+    private void call(String phone) {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
