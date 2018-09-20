@@ -115,7 +115,7 @@ public class MainActivity extends BaseActivity<BasePresenter, ActivityMainBindin
                         .setNegativeButton(
                                 "确定",
                                 new DialogInterface.OnClickListener() {
-
+ 
                                     @Override
                                     public void onClick(
                                             DialogInterface dialog,
