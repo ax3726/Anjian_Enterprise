@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="webview_is_cloumn">
+        <attr name="is_column" format="boolean" />
+    </declare-styleable>
+</resources>

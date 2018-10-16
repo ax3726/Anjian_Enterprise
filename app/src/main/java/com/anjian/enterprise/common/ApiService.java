@@ -1,6 +1,8 @@
 package com.anjian.enterprise.common;
 
 
+import com.anjian.enterprise.model.home.HomeBannerModel;
+import com.anjian.enterprise.model.home.HomeNewsModel;
 import com.anjian.enterprise.model.main.LoginModel;
 import com.anjian.enterprise.model.main.UserInfoModel;
 import com.anjian.enterprise.model.manage.OnlineModel;
@@ -40,6 +42,16 @@ public interface ApiService {
     @Headers({"Content-Type: application/json", "Accept: application/json"})
     @GET("security-monitor/app/user/info")
     Flowable<UserInfoModel> getUserInfo(@Query("token") String token);
+
+    //广告轮播
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @GET("security-monitor/app/cms/listHotSpot")
+    Flowable<HomeBannerModel> getHomeBanner(@Query("token") String token);
+
+    //获取新闻接口
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("security-monitor/app/cms/listPage")
+    Flowable<HomeNewsModel> getHomeNews(@Body RequestBody body, @Query("token") String token);
 
     //获取标准化信息
     @Headers({"Content-Type: application/json", "Accept: application/json"})

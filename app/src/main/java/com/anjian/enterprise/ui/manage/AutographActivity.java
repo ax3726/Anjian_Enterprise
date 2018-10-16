@@ -1,6 +1,7 @@
 package com.anjian.enterprise.ui.manage;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -41,6 +42,7 @@ public class AutographActivity extends BaseActivity<BasePresenter, ActivityAutog
     @Override
     protected void initData() {
         super.initData();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mType=getIntent().getIntExtra("type",0);
     }
 

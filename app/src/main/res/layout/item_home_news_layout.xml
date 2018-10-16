@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/lly_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="12px"
+            android:paddingLeft="16px"
+            android:paddingRight="14px"
+            android:paddingTop="12px">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="世界上最惨烈的十大安全事故"
+                    android:textColor="@color/colord2b2b2b"
+                    android:textSize="16px" />
+
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6px"
+                    android:lineSpacingExtra="4px"
+                    android:text="评评人类历史上，曾经发生过太多惨重 的事故，尤其是进入工业时代以后……"
+                    android:textColor="@color/colorAEAEAE"
+
+                    android:textSize="14px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="93px"
+                android:layout_height="70px"
+                android:layout_marginLeft="23px"
+                android:src="@drawable/home_shi2_icon" />
+
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/colorLine" />
+    </com.zhy.autolayout.AutoLinearLayout>
+</layout>

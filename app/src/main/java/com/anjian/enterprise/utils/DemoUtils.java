@@ -110,13 +110,13 @@ public class DemoUtils {
         byte[] b = baos.toByteArray();
         return Base64.encodeToString(b, Base64.DEFAULT);
     }
-
-    /**
+/*
+    *//**
      * 获取经纬度
      *
      * @param context
      * @return
-     */
+     *//*
     public static String getLatitudeAndLongitude(Context context) {
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
@@ -128,19 +128,19 @@ public class DemoUtils {
 
     }
 
-    /**
+    *//**
      * 获取经纬度
      *
      * @param aty
      * @return
-     */
+     *//*
     public static Location getLocation(Activity aty) {
 
         LocationManager locationManager = (LocationManager) aty.getSystemService(Context.LOCATION_SERVICE);
         Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         return location;
 
-    }
+    }*/
 
     /**
      * 格式化时间
@@ -168,7 +168,11 @@ public class DemoUtils {
      * @return
      */
     public static String getUrl(String url) {
-        return "https://security-monitor.oss-cn-shenzhen.aliyuncs.com" + url;
+        if (TextUtils.isEmpty(url)) {
+            return "";
+        } else {
+            return "https://security-monitor.oss-cn-shenzhen.aliyuncs.com" + url;
+        }
     }
 
     //以下代码可以跳转到应用详情，可以通过应用详情跳转到权限界面(6.0系统测试可用)

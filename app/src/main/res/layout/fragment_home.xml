@@ -1,202 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
 
-        <com.zhy.autolayout.AutoLinearLayout
-            android:id="@+id/lly_body"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/srl_body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorWhite"
-            android:orientation="vertical">
-
-            <com.lm.lib_common.widget.FlyBanner
-                android:id="@+id/fb_head"
-                android:layout_width="match_parent"
-                android:layout_height="200px">
-
-
-            </com.lm.lib_common.widget.FlyBanner>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="7px"
-                android:layout_marginLeft="20px"
-                android:layout_marginRight="20px"
-                android:layout_marginTop="7px"
-                android:lineSpacingExtra="8px"
-                android:text="评评人类历史上，曾经发生过太多惨重的事故，尤其是 进入工业时代以后……"
-                android:textColor="@color/color4a4a4a"
-                android:textSize="14px" />
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="11px"
-                android:background="@color/colorBackground" />
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/colorLine" />
+            android:scrollbars="none">
 
             <com.zhy.autolayout.AutoLinearLayout
-                android:id="@+id/lly_today"
+                android:id="@+id/lly_body"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="10px"
-                android:paddingLeft="15px"
-                android:paddingRight="20px"
-                android:paddingTop="10px">
+                android:layout_height="match_parent"
+                android:background="@color/colorWhite"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="41px"
-                    android:layout_height="41px"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/home_taday_icon" />
+                <com.lm.lib_common.widget.FlyBanner
+                    android:id="@+id/fb_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="200px">
+
+
+                </com.lm.lib_common.widget.FlyBanner>
+
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7px"
+                    android:layout_marginLeft="20px"
+                    android:layout_marginRight="20px"
+                    android:layout_marginTop="7px"
+                    android:lineSpacingExtra="8px"
+                    android:text=""
+                    android:textColor="@color/color4a4a4a"
+                    android:textSize="14px" />
+
 
                 <View
-                    android:layout_width="4dp"
-                    android:layout_height="4dp"
-                    android:layout_marginLeft="15px"
-                    android:layout_marginTop="5px"
-                    android:background="@drawable/shape_home_bule_point" />
+                    android:layout_width="match_parent"
+                    android:layout_height="11px"
+                    android:background="@color/colorBackground" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/colorLine" />
 
                 <com.zhy.autolayout.AutoLinearLayout
-                    android:layout_width="0dp"
+                    android:id="@+id/lly_today"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="8px"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:paddingBottom="10px"
+                    android:paddingLeft="15px"
+                    android:paddingRight="20px"
+                    android:paddingTop="10px">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:text="深圳安评信息咨询有限公司晋江分公司"
-                        android:textColor="@color/color4a4a4a"
-                        android:textSize="16px" />
+                    <ImageView
+                        android:layout_width="41px"
+                        android:layout_height="41px"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/home_taday_icon" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="4dp"
+                        android:layout_marginLeft="15px"
                         android:layout_marginTop="5px"
-                        android:text="请与8月22号前检查"
-                        android:textColor="@color/colorAEAEAE"
-                        android:textSize="14px" />
+                        android:background="@drawable/shape_home_bule_point" />
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8px"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:text="深圳安评信息咨询有限公司晋江分公司"
+                            android:textColor="@color/color4a4a4a"
+                            android:textSize="16px" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5px"
+                            android:text="请与8月22号前检查"
+                            android:textColor="@color/colorAEAEAE"
+                            android:textSize="14px" />
+
+                    </com.zhy.autolayout.AutoLinearLayout>
+
 
                 </com.zhy.autolayout.AutoLinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10px"
+                    android:background="@color/colorLine" />
 
-            </com.zhy.autolayout.AutoLinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rc_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="10px"
-                android:background="@color/colorLine" />
-
-
-            <com.zhy.autolayout.AutoLinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="12px"
-                android:paddingLeft="16px"
-                android:paddingRight="14px"
-                android:paddingTop="12px">
-
-                <com.zhy.autolayout.AutoLinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="世界上最惨烈的十大安全事故"
-                        android:textColor="@color/colord2b2b2b"
-                        android:textSize="16px" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6px"
-                        android:lineSpacingExtra="4px"
-                        android:text="评评人类历史上，曾经发生过太多惨重 的事故，尤其是进入工业时代以后……"
-                        android:textColor="@color/colorAEAEAE"
-
-                        android:textSize="14px" />
-                </com.zhy.autolayout.AutoLinearLayout>
-
-                <ImageView
-                    android:layout_width="93px"
-                    android:layout_height="70px"
-                    android:layout_marginLeft="23px"
-                    android:src="@drawable/home_shi1_icon" />
+                </android.support.v7.widget.RecyclerView>
 
 
             </com.zhy.autolayout.AutoLinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/colorLine" />
-
-            <com.zhy.autolayout.AutoLinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="12px"
-                android:paddingLeft="16px"
-                android:paddingRight="14px"
-                android:paddingTop="12px">
-
-                <com.zhy.autolayout.AutoLinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="世界上最惨烈的十大安全事故"
-                        android:textColor="@color/colord2b2b2b"
-                        android:textSize="16px" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6px"
-                        android:lineSpacingExtra="4px"
-                        android:text="评评人类历史上，曾经发生过太多惨重 的事故，尤其是进入工业时代以后……"
-                        android:textColor="@color/colorAEAEAE"
-
-                        android:textSize="14px" />
-                </com.zhy.autolayout.AutoLinearLayout>
-
-                <ImageView
-                    android:layout_width="93px"
-                    android:layout_height="70px"
-                    android:layout_marginLeft="23px"
-                    android:src="@drawable/home_shi2_icon" />
-
-
-            </com.zhy.autolayout.AutoLinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="50px"
-                android:background="@color/colorLine" />
-        </com.zhy.autolayout.AutoLinearLayout>
-    </ScrollView>
 </layout>
